@@ -1,133 +1,224 @@
-// 1
+"use strict"
+
+// Basic exercises
+for (let i =0; i < 5; i++) {
+  console.log('hello world')
+}
+
+let person = {
+  name: 'josh',
+  age: 18
+};
+
+person.name = 'Bosh';
+console.log(person);
+person['name']='Mary'
+console.log(person);
+
+let selectedColors = ['red', 'green', 'blue'];
+selectedColors [3] = 'purple'
+console.log(selectedColors);
+console.log(selectedColors.length);
+
+ function greet (name, lastname) {
+   console.log('hello ' + name + '' + lastname);
+ }
+
+greet('Victor', 'Oshimen');
+greet('Mary', 'Jane');
+
+function square(number) {
+  return number * number;
+}
+console.log(square(5));
+
+
+function increase(number) {
+  number++;
+  return number;
+}
+
+console.log(increase(5));
+
+
+
+// Homework
 const thingsInHome = ["mint", "basil", "cactus", "table", "wooden spoon", "bread"];
 const thingsInGarden = ["apple", "trees", "stairs", "plum", "wooden bench"];
 
-const madeOutOfWood = [thingsInHome[3], thingsInHome[4], thingsInGarden[4], thingsInGarden[1]];
+// -- edit below --
+const madeOutOfWood = [thingsInHome[3], thingsInGarden[4]];
 const edibles = [thingsInHome[0], thingsInHome[1], thingsInHome[5], thingsInGarden[0], thingsInGarden[3]];
+// -- edit above --
 
 console.log(
   `made out of wood: ${JSON.stringify(madeOutOfWood)}\n edibles: ${JSON.stringify(edibles)}`
 );
 
-// 2
+
+// 2 for loop
 function getSmallestNumber(numbers) {
-  let smallest = numbers[0];
-  for (let i = 1; i < numbers.length; i++) {
-    if (numbers[i] < smallest) {
-      smallest = numbers[i];
+  let smallestNumber = numbers[0]
+  for (let i = 0; i < numbers.length; ++i) {
+    if (smallestNumber > numbers[i]) {
+     smallestNumber = numbers[i];
     }
   }
-  return smallest;
+  return smallestNumber;
 }
 
-console.log(getSmallestNumber([2, -5, 10, 1, 4, 0]));
-console.log(getSmallestNumber([200, 25, 4, 123, 87, 0]));
+console.log(getSmallestNumber([2, -5, 10, 1, 4])); // -5
+getSmallestNumber([200, 25, 4, 123, 87]); // 4
 
-function getSmallestNumber(numbers) {
-  const sortedArray = numbers.sort((a, b) => a - b); // (a, b) => a - b DEVELOPER.MOZILLA References JavaScript Reference Standard built-in objects Array Array.prototype.sort()
-  return sortedArray[0];
+// 2.5 sort function
+
+function giveSmallestNumber(numbers) {
+  return numbers.sort((a, b) => a - b)[0];
 }
 
-console.log(getSmallestNumber([2, -5, 10, 1, 4, 0]));
-console.log(getSmallestNumber([200, 25, 4, 123, 87]));
+console.log(giveSmallestNumber([2, -5, 10, 1, 4])); // -5
+console.log(giveSmallestNumber([200, 25, 4, 123, 87])); // 4
 
 // 3
+console.log(getSquaredNumbers([1, 2, 3, 4, 5])); // [1, 4, 9, 16, 25]
+console.log(getSquaredNumbers([6, 7, 8, 9, 10])); // [36, 49, 64, 81, 100]
+
 function getSquaredNumbers(numbers) {
-  const squaredNumbers = [];
+  let squaredArray = []
   for (let i = 0; i < numbers.length; i++) {
-    squaredNumbers[i] = numbers[i] * numbers[i];
+    let square = numbers[i] * numbers[i];
+    squaredArray.push(square);
   }
-  return squaredNumbers;
+  return squaredArray;
 }
 
-getSquaredNumbers([1, 2, 3, 4, 5]); // [1, 4, 9, 16, 25]
-getSquaredNumbers([6, 7, 8, 9, 10]); // [36, 49, 64, 81, 100]
+// function
+// make new array
+// lets multiply the array by itself
+// push it in the array
+// return the squaredArray
 
 const numbers = [1, 2, 3];
 const squaredNumbers = getSquaredNumbers(numbers);
+
 console.log(squaredNumbers); // [1, 4, 9]
 console.log(numbers); // [1, 2, 3]
 console.log(numbers !== squaredNumbers); // true
 
 // 4
 function getReversedString(string) {
-  const splitted = string.split('');
-  const reversedSplit = splitted.reverse('')
-  const joinedInAString = reversedSplit.join('');
-  return joinedInAString;
+  return string.split('').reverse().join('').replace(/\s+/g, '');
 }
 
 console.log(getReversedString('Hello!')); // '!olleH'
 console.log(getReversedString('Arrays')); // 'syarrA'
 
 // 5
-function getReversedString(str) {
-  const lowercaseNoSpaces = str.replace(/\s+/g, '').toLowerCase('');
-  const splittedString = lowercaseNoSpaces.split('');
-  const reversedArray = splittedString.reverse('');
-  const reversedString = reversedArray.join('');
-  return reversedString;
+// make a ispalindrome function
+// it will delete spaces and capital cases and compare it with the getreversed
+// do the same as above
+// return true if both are the same
+
+// found the delete spaces on https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+// tolowerCase https://stackoverflow.com/questions/56369008/replace-capital-letters-in-an-entire-string-with-lowercase-letters-and-hyphens
+
+
+function isPalindrome(string){
+  const normaliseString = string.replace(/\s+/g, '').toLowerCase(); // made it without the spaces and capital letters
+  return normaliseString === getReversedString(string).toLowerCase();
 }
 
-function isPalindrome(str) {
-  const reversedStr = getReversedString(str);
-  const normalizedStr = str.replace(/\s+/g, '').toLowerCase('');
-  return normalizedStr === reversedStr;
-}
-
-console.log(isPalindrome('Kayak'));
-console.log(isPalindrome('Racecar'));
-console.log(isPalindrome('Was it a cat I saw'));
-console.log(isPalindrome('Hello!'));
+console.log(isPalindrome('Kayak')); // true
+console.log(isPalindrome('Racecar')); // true
+console.log(isPalindrome('Was it a cat I saw')) // true
+console.log(isPalindrome('Hello!')); // false
 
 // 6
-function countLetters(text) {
-  const letterCounts = {};
-  const lowercaseNoSpaces = text.replace(/\s+/g, '').toLowerCase();
-
-  for (let letter of lowercaseNoSpaces) {
-    if (letter >= 'a' && letter <= 'z') {
-      if (letterCounts[letter]) {
-        letterCounts[letter] += 1;
-      } else {
-        letterCounts[letter] = 1;
-      }
-    }
-  }
-  return letterCounts;
-}
+// make function
+// make an empty value where the letter will be counted
+// transform the sentence so it deletes the spaces and uppercases
+// make every letter compare with one letter to make it simple in beginning
+// if true add 1 to that letter
+// return an object with the count
+// if it works, repeat for the whole alphabet
 
 const lettersObject = countLetters('The quick brown fox jumps over the lazy dog');
 
+function countLetters(string) {
+  let transformText = string.replace(/\s+/g, '').toLowerCase();
+  let countA = 0, countB = 0, countC = 0, countD = 0, countE = 0, countF = 0, countG = 0, countH = 0,
+    countI = 0, countJ = 0, countK = 0, countL = 0, countM = 0, countN = 0, countO = 0, countP = 0,
+    countQ = 0, countR = 0, countS = 0, countT = 0, countU = 0, countV = 0, countW = 0, countX = 0,
+    countY = 0, countZ = 0;
+
+  for (let i = 0; i < transformText.length; i++) {
+    if (transformText[i] === 'a') countA++;
+    else if (transformText[i] === 'b') countB++;
+    else if (transformText[i] === 'c') countC++;
+    else if (transformText[i] === 'd') countD++;
+    else if (transformText[i] === 'e') countE++;
+    else if (transformText[i] === 'f') countF++;
+    else if (transformText[i] === 'g') countG++;
+    else if (transformText[i] === 'h') countH++;
+    else if (transformText[i] === 'i') countI++;
+    else if (transformText[i] === 'j') countJ++;
+    else if (transformText[i] === 'k') countK++;
+    else if (transformText[i] === 'l') countL++;
+    else if (transformText[i] === 'm') countM++;
+    else if (transformText[i] === 'n') countN++;
+    else if (transformText[i] === 'o') countO++;
+    else if (transformText[i] === 'p') countP++;
+    else if (transformText[i] === 'q') countQ++;
+    else if (transformText[i] === 'r') countR++;
+    else if (transformText[i] === 's') countS++;
+    else if (transformText[i] === 't') countT++;
+    else if (transformText[i] === 'u') countU++;
+    else if (transformText[i] === 'v') countV++;
+    else if (transformText[i] === 'w') countW++;
+    else if (transformText[i] === 'x') countX++;
+    else if (transformText[i] === 'y') countY++;
+    else if (transformText[i] === 'z') countZ++;
+  }
+
+  return {
+    a: countA, b: countB, c: countC, d: countD, e: countE, f: countF, g: countG, h: countH,
+    i: countI, j: countJ, k: countK, l: countL, m: countM, n: countN, o: countO, p: countP,
+    q: countQ, r: countR, s: countS, t: countT, u: countU, v: countV, w: countW, x: countX,
+    y: countY, z: countZ
+  };
+}
+
 console.log(lettersObject);
+// {
+//   a: 1
+//   b: 1
+//   c: 1
+//   d: 1
+//   e: 3
+//   f: 1
+//   g: 1
+//   h: 2
+//   i: 1
+//   j: 1
+//   k: 1
+//   l: 1
+//   m: 1
+//   n: 1
+//   o: 4
+//   p: 1
+//   q: 1
+//   r: 2
+//   s: 1
+//   t: 2
+//   u: 2
+//   v: 1
+//   w: 1
+//   x: 1
+//   y: 1
+//   z: 1
+//
 
 // 7
-function getYoungestPerson(people) {
-  let youngest = people[0];
-  for (let person of people) {
-    if (person.age < youngest.age) {
-      youngest = person;
-    }
-  }
-  return youngest;
-}
-
-function getOldestPerson(people) {
-  let oldest = people[0];
-  for (let person of people) {
-    if (person.age > oldest.age) {
-      oldest = person;
-    }
-  }
-  return oldest;
-}
-
-function getAgeDifference(people) {
-  const youngest = getYoungestPerson(people);
-  const oldest = getOldestPerson(people);
-  return oldest.age - youngest.age;
-}
-
 const peopleArray = [
   {
     name: 'Adam',
@@ -147,66 +238,109 @@ const peopleArray = [
   }
 ]
 
+// we sort the ages from youngest to oldest
+// we extract the first age and return it as the youngest person
+
+
+console.log(peopleArray);
+function getYoungestPerson(people) {
+  peopleArray.sort(function (a, b) {
+    return a.age - b.age;
+  })
+  return people[0]
+}
+
+function getOldestPerson(people) {
+  peopleArray.sort(function (a, b) {
+    return a.age - b.age;
+  })
+  return people[people.length - 1]; // want to return the last person on the sorted array
+}
+
+function getAgeDifference(people) {
+  return getOldestPerson(people).age - getYoungestPerson(people).age
+}
+
+console.log(getYoungestPerson(peopleArray)); // 5
+console.log(getOldestPerson(peopleArray)); // 75
 console.log(getAgeDifference(peopleArray)); // 70
 
 // 8
-function positiveSum(arr) {
-  let sum = 0;
-
-  for (let number of arr) {
-    if (number > 0) {
-      const positiveNumber = number;
-      const newSum = sum + positiveNumber;
-      sum = newSum;
+function positiveNumFilter(numbers) {
+  let positiveNumbers = [];
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 0) {
+      positiveNumbers.push(numbers[i]);
     }
   }
+  return positiveNumbers;
+}
 
+function positiveSum(numbers){
+  const positiveNumbers = positiveNumFilter(numbers);
+  let sum = 0
+  for (let i = 0; i < positiveNumbers.length; i++) {
+    sum = sum + positiveNumbers[i];
+  }
   return sum
 }
 
+// we have to filter out the positive numbers
+// we have to get the positive numbers and sum them
+
+console.log(positiveNumFilter([-200, 2, 4, 5, 6, 7]))
+console.log(positiveSum([-200, 2, 4, 5, 6, 7]))
+
 // 9
-function squareSum(numbers) {
-  let sum = 0;
-
-  for (let number of numbers) {
-
-    const square = number * number;
-    sum = sum + square;
-
+function squareSum(numbers){
+  let result = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    result += (numbers[i] * numbers[i]);
   }
+  return result;
+}
 
-  return sum
+// 10
+function abbrevName(name){
+  let nameArray = name.split(" ")
+  let first = nameArray[0];
+  let last = nameArray[1];
+  let initials = first[0] +'.'+last[0];
+  return initials.toUpperCase();
 }
 
 // 11
-function nameSplit(name) {
-  return name.split(' '); // Split the name by the space and return the array
-}
-
-console.log(nameSplit("Sam Harris"));
-
-function abbrevName(name) {
-  const nameArray = nameSplit(name);
-
-  const firstInitial = nameArray[0][0].toUpperCase();
-  const secondInitial = nameArray[1][0].toUpperCase();
-
-  return `${firstInitial}.${secondInitial}`
-}
-
-// 12
 function countSheeps(sheep) {
   let count = 0;
 
   for (let i = 0; i < sheep.length; i++) {
-    if (sheep[i] === true) {
+    if (sheep[i]) {
       count++;
     }
   }
 
-  return count
+  return count;
 }
+
+// 12
+function digitize(numbers) {
+  let reversedArray = [];
+  let str = numbers.toString().split('').reverse();
+
+  for (let i = 0; i < str.length; i++) {
+    reversedArray.push(Number(str[i])); // I got error that i returned an array of strings instead of numbers , so I found https://www.freecodecamp.org/news/how-to-convert-a-string-to-a-number-in-javascript/
+// the Number() function
+  }
+
+  return reversedArray;
+}
+
 // 13
+// make function
+// loop through the haystack
+// the condition is that we have to find the "needle"
+// return "found the ..." and give the index where it was found / postioin +i
+
 function findNeedle(haystack) {
   for (let i = 0; i < haystack.length; i++) {
     if (haystack[i] === "needle") {
@@ -216,28 +350,32 @@ function findNeedle(haystack) {
 }
 
 // 14
-function maps(x) {
+// make function
+// make new empty array, where we will store ou oubled numbers
+// loop trhough the given array
+// every loop we want to double it *2
+// we want to push those numbers back to the empty array
+// return the empty array as our answer
+
+function maps(numbersToBeDoubled) {
   const doubledNumbers = [];
 
-  for (let number of x) {
-    const doubledValue = number * 2;
-
-
-    doubledNumbers[doubledNumbers.length] = doubledValue;
+  for (let i = 0; i < numbersToBeDoubled.length; i++) {
+    const doubledValue = numbersToBeDoubled[i] * 2;
+    doubledNumbers.push(doubledValue);
   }
+
   return doubledNumbers;
 }
 
-
-
 // 15
+// idem as the assignment above, but here we will invert each number with each loop
 function invert(array) {
   const inverses = [];
 
-  for (let number of array) {
-    const inverseNumbers = -number;
-
-    inverses.push(inverseNumbers); // I understand that using the .push is an easier way to store the new values in an array when console.loging?
+  for (let i = 0; i < array.length; i++) {
+    const inverseNumber = array[i]*-1;
+    inverses.push(inverseNumber);
   }
 
   return inverses;
@@ -247,60 +385,133 @@ function invert(array) {
 function sum(numbers) {
   let total = 0;
 
-  for (let number of numbers) {
-    total += number;
+  for (let i = 0; i < numbers.length; i++) {
+    total += numbers[i];
   }
 
-  return total
+  return total;
 }
 
 // 17
-function getArraySum(arr) {
-  let sum = 0; // Initialize sum to 0
-
-  for (let num of arr) {
-    sum += num;
+function getArraySum(array) {
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
+    total += array[i];
   }
-  return sum
+  return total;
 }
 
-function arrayPlusArray(arr1, arr2) {
-  const sum1 = getArraySum(arr1);
-  const sum2 = getArraySum(arr2);
-
-  return sum1 + sum2
+function arrayPlusArray(firstArray, secondArray) {
+  const total1 = getArraySum(firstArray);
+  const total2 = getArraySum(secondArray);
+  return total1 + total2;
 }
 
 // 18
-var countSheep = function(num) {
+// make a function that counts sheeps
+// make an empty string where we wil count how many sheeps there are
+// make a loop and with every loop we count the sheep with the index it is looping through
+// return the the sheep counting string
+
+function countSheep(num) {
   let result = '';
   for (let i = 1; i <= num; i++) {
-    result += i + ' sheep...';
+    result += (i + ' sheep...');
   }
 
   return result;
 }
 
 // 19
+// make function
+// make empty variable that stores the avarage
+// loop the results and add it to the total score
+
 function getAverage(marks) {
-  let sum = 0;
-
-  for (let mark of marks) {
-    sum += mark;
+  let totalScore = 0;
+  for (let i = 0; i < marks.length; i++) {
+    totalScore += marks[i];
   }
+  let avarageScore = totalScore / marks.length;
 
-  const average = sum / marks.length;
-  return Math.floor(average); // in the discussion on the excercises I found a tip to use .floor to round the digits
+  return Math.floor(avarageScore); // I found this https://www.w3schools.com/jsref/jsref_floor.asp#:~:text=JavaScript%20Math.floor()&text=The%20Math.floor()%20method,DOWN%20to%20the%20nearest%20integer.
 }
 
 // 20
-function monkeyCount(n) {
-  const monkeys = [];
+function monkeyCount(number) {
 
-  // Loop from 1 to n
-  for (let i = 1; i <= n; i++) {
-    monkeys.push(i);
+  let monkeys = [];
+  for (let i = 0; i < number; i++) {
+    monkeys.push(i + 1);
   }
 
   return monkeys;
 }
+
+
+// SIDE EXERCISE
+const admins = [
+  {
+    name: 'bob',
+    isActive: true
+  },
+  {
+    name: 'Mark',
+    isActive: true
+  },
+  {
+    name: 'Maria',
+    isActive: false
+  },
+]
+
+const friends = [
+  {
+    name: 'Kate',
+    isActive: true
+  },
+  {
+    name: 'Amy',
+    isActive: false
+  },
+  {
+    name: 'John',
+    isActive: true
+  },
+];
+
+function checkUser(user) {
+  return user.isActive;
+}
+
+function filterOutInactiveUsers (users) {
+  const activeUsersArr = [];
+  for (let i = 0; i < users.length; i++) {
+    const currentUser = users[i];
+    if (currentUser.isActive) {
+      activeUsersArr.push(currentUser);
+    }
+  }
+  return activeUsersArr
+}
+const activeUsers = filterOutInactiveUsers(admins);
+
+console.log(activeUsers);
+
+/**
+ make empty array for active users
+ filter out inactive users by using the function above
+ push them to the activeuserarr
+ */
+
+function mergeOnlyActiveUsers(firstUsersArr, secondUsersArr) {
+  const firstUsersActiveArr = filterOutInactiveUsers(firstUsersArr);
+  const secondUsersActiveArr = filterOutInactiveUsers(secondUsersArr);
+  const activeUsersArr = firstUsersActiveArr.concat(secondUsersActiveArr);
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+  return activeUsersArr
+}
+
+const mergedArrays = mergeOnlyActiveUsers(admins, friends);
+
+console.log(mergedArrays);
