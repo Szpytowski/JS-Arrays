@@ -107,7 +107,7 @@ console.log(numbers !== squaredNumbers); // true
 
 // 4
 function getReversedString(string) {
-  return string.split('').reverse().join('').replace(/\s+/g, '');
+  return string.split('').reverse().join('').replace(/\s+/g, ''); // https://flaviocopes.com/how-to-replace-whitespace-javascript/
 }
 
 console.log(getReversedString('Hello!')); // '!olleH'
@@ -145,78 +145,19 @@ console.log(isPalindrome('Hello!')); // false
 const lettersObject = countLetters('The quick brown fox jumps over the lazy dog');
 
 function countLetters(string) {
-  let transformText = string.replace(/\s+/g, '').toLowerCase();
-  let countA = 0, countB = 0, countC = 0, countD = 0, countE = 0, countF = 0, countG = 0, countH = 0,
-    countI = 0, countJ = 0, countK = 0, countL = 0, countM = 0, countN = 0, countO = 0, countP = 0,
-    countQ = 0, countR = 0, countS = 0, countT = 0, countU = 0, countV = 0, countW = 0, countX = 0,
-    countY = 0, countZ = 0;
+  const transformedText = string.replace(/\s+/g, '').toLowerCase();
+  const countedLetters = {};
 
-  for (let i = 0; i < transformText.length; i++) {
-    if (transformText[i] === 'a') countA++;
-    else if (transformText[i] === 'b') countB++;
-    else if (transformText[i] === 'c') countC++;
-    else if (transformText[i] === 'd') countD++;
-    else if (transformText[i] === 'e') countE++;
-    else if (transformText[i] === 'f') countF++;
-    else if (transformText[i] === 'g') countG++;
-    else if (transformText[i] === 'h') countH++;
-    else if (transformText[i] === 'i') countI++;
-    else if (transformText[i] === 'j') countJ++;
-    else if (transformText[i] === 'k') countK++;
-    else if (transformText[i] === 'l') countL++;
-    else if (transformText[i] === 'm') countM++;
-    else if (transformText[i] === 'n') countN++;
-    else if (transformText[i] === 'o') countO++;
-    else if (transformText[i] === 'p') countP++;
-    else if (transformText[i] === 'q') countQ++;
-    else if (transformText[i] === 'r') countR++;
-    else if (transformText[i] === 's') countS++;
-    else if (transformText[i] === 't') countT++;
-    else if (transformText[i] === 'u') countU++;
-    else if (transformText[i] === 'v') countV++;
-    else if (transformText[i] === 'w') countW++;
-    else if (transformText[i] === 'x') countX++;
-    else if (transformText[i] === 'y') countY++;
-    else if (transformText[i] === 'z') countZ++;
+  for (let i = 0; i < transformedText.length; i++) {
+    if (countedLetters[transformedText[i]] === undefined) {
+      countedLetters[transformedText[i]] = 0;
+    }
+    countedLetters[transformedText[i]]++;
   }
-
-  return {
-    a: countA, b: countB, c: countC, d: countD, e: countE, f: countF, g: countG, h: countH,
-    i: countI, j: countJ, k: countK, l: countL, m: countM, n: countN, o: countO, p: countP,
-    q: countQ, r: countR, s: countS, t: countT, u: countU, v: countV, w: countW, x: countX,
-    y: countY, z: countZ
-  };
+  return countedLetters;
 }
 
 console.log(lettersObject);
-// {
-//   a: 1
-//   b: 1
-//   c: 1
-//   d: 1
-//   e: 3
-//   f: 1
-//   g: 1
-//   h: 2
-//   i: 1
-//   j: 1
-//   k: 1
-//   l: 1
-//   m: 1
-//   n: 1
-//   o: 4
-//   p: 1
-//   q: 1
-//   r: 2
-//   s: 1
-//   t: 2
-//   u: 2
-//   v: 1
-//   w: 1
-//   x: 1
-//   y: 1
-//   z: 1
-//
 
 // 7
 const peopleArray = [
@@ -251,9 +192,7 @@ function getYoungestPerson(people) {
 }
 
 function getOldestPerson(people) {
-  peopleArray.sort(function (a, b) {
-    return a.age - b.age;
-  })
+  getYoungestPerson(people);
   return people[people.length - 1]; // want to return the last person on the sorted array
 }
 
